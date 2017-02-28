@@ -1,9 +1,13 @@
+require "xeroizer/models/attachment"
+
 module Xeroizer
   module Record
     
     class CreditNoteModel < BaseModel
         
       set_permissions :read, :write, :update
+      
+      include AttachmentModel::Extensions
       
       public
 
@@ -39,6 +43,8 @@ module Xeroizer
         'ACCPAYCREDIT' =>           'Accounts Payable'
       } unless defined?(CREDIT_NOTE_TYPE)
       CREDIT_NOTE_TYPES = CREDIT_NOTE_TYPE.keys.sort
+      
+      include AttachmentModel::Extensions
       
       set_primary_key :credit_note_id
       set_possible_primary_keys :credit_note_id, :credit_note_number
